@@ -1,7 +1,7 @@
 # Django-Intern
 
 Overview
-A view is a “type” of Web page in your Django application that generally serves a specific function and has a specific template. For example, in a blog application, you might have the following views:
+A view is a “type” of Web page in your Django application that generally serves a specific function and has a specific template. The following views of this project is :
 
 Blog homepage – displays the latest few entries. <br>
 Entry “detail” page – permalink page for a single entry. <br>
