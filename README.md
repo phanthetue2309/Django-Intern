@@ -20,3 +20,19 @@ Vote action – handles voting for a particular choice in a particular question.
 Write a minima form : 
 ![Image-minimalForm](image/minimal_form.PNG)
 
+Working with POST method : 
+![Image-def_vote_tutorial4](image/def_vote_tutorial4.PNG)
+
+request.POST is a dictionary-like object that lets you access submitted data by key name. <br>
+In this case, request.POST['choice'] returns the ID of the selected choice, as a string. <br>
+request.POST values are always strings. <br>
+
+
+request.POST['choice'] will raise KeyError if choice wasn’t provided in POST data. <br>
+The above code checks for KeyError and redisplays the question form with an error message if choice isn’t given. <br>
+
+After incrementing the choice count, the code returns an HttpResponseRedirect rather than a normal HttpResponse. HttpResponseRedirect takes a single argument: the URL to which the user will be redirected (see the following point for how we construct the URL in this case). 
+
+
+We are using the reverse() function in the HttpResponseRedirect constructor in this example. <br>
+This function helps avoid having to hardcode a URL in the view function. It is given the name of the view that we want to pass control to and the variable portion of the URL pattern that points to that view. In this case, using the URLconf we set up in Tutorial 3, this reverse() call will return a string like
