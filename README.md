@@ -79,23 +79,23 @@ Now the bug has been fixed : <br>
 ![Image-solve_bug_show](image/solve_bug_show.PNG) <br> 
 
 So what all Django have done : 
-    manage.py test polls looked for tests in the polls application <br>
-    it found a subclass of the django.test.TestCase class <br>
-    it created a special database for the purpose of testing <br>
-    it looked for test methods - ones whose names begin with test <br>
-    in test_was_published_recently_with_future_question it created a Question instance whose pub_date field is 30 days in the future <br>
-    … and using the assertIs() method, it discovered that its was_published_recently() returns True, though we wanted it to return False <br>
+- manage.py test polls looked for tests in the polls application <br>
+- it found a subclass of the django.test.TestCase class <br>
+- it created a special database for the purpose of testing <br>
+- it looked for test methods - ones whose names begin with test <br>
+- in test_was_published_recently_with_future_question it created a Question instance whose pub_date field is 30 days in the future <br>
+- … and using the assertIs() method, it discovered that its was_published_recently() returns True, though we wanted it to return False <br>
 
 After this we have some bug have to fix in : <br>
-    Client Action <br>
-    URL pattern <br>
+- Client Action <br>
+- URL pattern <br>
 
 This is end Tutorial 5 
 
 ## Tutorial 6
 ### Add Static 
 Create static in polls then change color and background  <br>
-    + In static we will have image , style.css and template
+- In static we will have image , style.css and template
 
 ## Tutorial 7 
 ### About Custom your Admin Site : 
@@ -107,9 +107,9 @@ And we got view of this : <br>
 ![Image-template_admin](image/template_admin.PNG) <br> 
 
 Something i have learn : 
-    Using an app and connect class in class to one ( this is the most important)
-    Using inline
-    How to REUSAGE APP ( very important)
+- Using an app and connect class in class to one ( this is the most important)
+- Using inline
+- How to REUSAGE APP ( very important)
 
 ## Connect MySQL 
 ![Image-connectSQL](image/connectSQL.PNG) <br> 
