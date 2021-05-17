@@ -96,3 +96,11 @@ Something i have learn :
     Using an app and connect class in class to one ( this is the most important)
     Using inline
     How to REUSAGE APP ( very important)
+
+## Connect MySQL 
+![Image-connectSQL](image/connectSQL.PNG) <br> 
+
+Then migrate : <br>
+![Image-migrate_MySQL](image/migrate_MySQL.PNG) <br> 
+
+
