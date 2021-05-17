@@ -82,3 +82,17 @@ This is end Tutorial 5
 ### Add Static 
 Create static in polls then change color and background  <br>
     + In static we will have image , style.css and template
+
+## Tutorial 7 
+### About Custom your Admin Site : 
+
+First we have to build an admin site : <br>
+![Image-custom_admin](image/custom_admin.PNG) <br> 
+
+And we got view of this : <br>
+![Image-template_admin](image/template_admin.PNG) <br> 
+
+Something i have learn : 
+    Using an app and connect class in class to one ( this is the most important)
+    Using inline
+    How to REUSAGE APP ( very important)
