@@ -75,3 +75,10 @@ So what all Django have done :
 After this we have some bug have to fix in : <br>
     Client Action <br>
     URL pattern <br>
+
+This is end Tutorial 5 
+
+## Tutorial 6
+### Add Static 
+Create static in polls then change color and background  <br>
+    + In static we will have image , style.css and template
