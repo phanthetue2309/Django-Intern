@@ -15,3 +15,8 @@ Question “index” page – displays the latest few questions.<br>
 Question “detail” page – displays a question text, with no results but with a form to vote.<br>
 Question “results” page – displays results for a particular question.<br>
 Vote action – handles voting for a particular choice in a particular question.<br>
+
+
+Write a minima form : 
+![Image-minimalForm](image/minimal_form.PNG)
+
