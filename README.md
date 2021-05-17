@@ -57,9 +57,12 @@ First , we got some problem about day publish :
 Something wrong Right ? <br>
 So we create a auto test like this : 
 ![Image-create_test](image/create_test.PNG) <br> 
-
+And The bug here : 
+![Image-bug_show](image/bug_show.PNG) <br> 
 And now we have to solve this bug : <br>
 ![Image-fix_bug_test](image/fix_bug_test.PNG) <br> 
+Now the bug has been fixed : <br>
+![Image-solve_bug_show](image/solve_bug_show.PNG) <br> 
 
 So what all Django have done : 
     manage.py test polls looked for tests in the polls application <br>
@@ -68,3 +71,7 @@ So what all Django have done :
     it looked for test methods - ones whose names begin with test <br>
     in test_was_published_recently_with_future_question it created a Question instance whose pub_date field is 30 days in the future <br>
     … and using the assertIs() method, it discovered that its was_published_recently() returns True, though we wanted it to return False <br>
+
+After this we have some bug have to fix in : <br>
+    Client Action <br>
+    URL pattern <br>
