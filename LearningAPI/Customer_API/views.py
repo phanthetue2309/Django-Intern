@@ -1,9 +1,12 @@
+from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from .serializers import *
 from .models import *
 from rest_framework import permissions
+from rest_framework.views import APIView
 
-class CustomerListAPIView(ListCreateAPIView):
+class CustomerListAPIView(APIView):
+    authentication_classes = [SessionAuthentication, BasicAuthentication]
     serializer_class = CustomerSerializer
     queryset = Customer.objects.all()
     permission_classes = (permissions.IsAuthenticated,)
@@ -16,6 +19,7 @@ class CustomerListAPIView(ListCreateAPIView):
 
 
 class CustomerDetailAPIView(RetrieveUpdateDestroyAPIView):
+    authentication_classes = [SessionAuthentication, BasicAuthentication]
     serializer_class = CustomerSerializer
     permission_classes = (permissions.IsAuthenticated, )
     queryset = Customer.objects.all()
