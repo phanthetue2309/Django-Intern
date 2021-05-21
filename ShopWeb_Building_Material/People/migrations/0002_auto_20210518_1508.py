@@ -13,11 +13,11 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='provider',
             name='email',
-            field=models.CharField(max_length=45, null=True),
+            field=models.CharField(max_length=255, null=True),
         ),
         migrations.AddField(
             model_name='provider',
             name='website',
-            field=models.CharField(max_length=45, null=True),
+            field=models.CharField(max_length=255, null=True),
         ),
     ]

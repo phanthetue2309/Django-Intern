@@ -52,5 +52,6 @@ def List_typeProduct(request, type_product):
     template = "Product/list_type_product.html"
     products = Product.objects.filter(type_product__name = type_product).order_by('name')
     context = {'products': products,
+                'type' : type_product,
                }
     return render(request, template, context)

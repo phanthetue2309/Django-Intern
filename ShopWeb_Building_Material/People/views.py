@@ -16,11 +16,11 @@ class CustomerListView(ListView):
     ordering = ['-id']
     paginate_by = 10  # Số lượng phân trang
 
-success_url_customer = "people/customer"
+success_url_customer = ""
 
 class CustomerCreateView(LoginRequiredMixin, CreateView):
     model = Customer    
-    fields = ['name', 'address', 'phone_number', 'discription']
+    fields = ['name', 'address', 'phone_number']
     template_name = 'Customer/customer_form.html'
     success_url = success_url_customer
 

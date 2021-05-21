@@ -1,6 +1,7 @@
 {% extends "WebShop/base.html" %}
 {% block content %}
 <br>
+<center><h2><strong>SẢN PHẨM TRONG KHO</strong></h2></center>
 <table border = "1" style="width:100%" content="Danh Sách Nhà Cung Cấp ">
         <tr>
             <th><center>Tên Sản Phẩm</center></th>
@@ -12,7 +13,6 @@
 
         </tr>
 <!--    Code show the provider to list -->
-    <h3>List product in Warehouse</h3> <br>
     {% for ware in warehouse %}
 <!--           remember : url make same in the urls.py -->
         <tr>

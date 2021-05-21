@@ -1,7 +1,7 @@
 {% extends "WebShop/base.html" %}
 {% block content %}
 <br>
-<h3> List Customer </h3>
+<center><h2><strong>DANH SÁCH KHÁCH HÀNG</strong></h2></center>
 <table border = "1" style="width:100%" >
         <tr>
             <th>Khách Hàng</th>
@@ -12,10 +12,10 @@
     {% for customer in customers %}
 <!--           remember : url make same in the urls.py -->
         <tr>
-            <td><center> <a  href="{% url 'customer-detail' customer.id  %}"><h5>{{customer.name}}</h5></a></center></td>
+            <td> <a  href="{% url 'People:customer-detail' customer.id  %}"><h5>{{customer.name}}</h5></a></center></td>
 <!--           href to input bill detail  -->
-            <td><center>{{customer.address}} </center></td>
-            <td><center>{{customer.phone_number}}</center></td>
+            <td>{{customer.address}}</td>
+            <td>{{customer.phone_number}}</td>
 
         </tr>
 

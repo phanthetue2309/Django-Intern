@@ -16,14 +16,14 @@ class Migration(migrations.Migration):
             name='Calculation_Unit',
             fields=[
                 ('id', models.AutoField(primary_key=True, serialize=False)),
-                ('name', models.CharField(max_length=45)),
+                ('name', models.CharField(max_length=255)),
             ],
         ),
         migrations.CreateModel(
             name='TypeProduct',
             fields=[
                 ('id', models.AutoField(primary_key=True, serialize=False)),
-                ('name', models.CharField(max_length=45)),
+                ('name', models.CharField(max_length=255)),
                 ('description', models.CharField(max_length=255)),
                 ('flag', models.IntegerField(default=1)),
             ],
@@ -32,10 +32,10 @@ class Migration(migrations.Migration):
             name='Product',
             fields=[
                 ('id', models.AutoField(primary_key=True, serialize=False)),
-                ('name', models.CharField(max_length=45)),
+                ('name', models.CharField(max_length=255)),
                 ('unit_cost', models.IntegerField(default=10000)),
                 ('selling_price', models.IntegerField(default=10000, null=True)),
-                ('origin', models.CharField(max_length=45)),
+                ('origin', models.CharField(max_length=255)),
                 ('calculationUnit', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='Product.calculation_unit')),
                 ('type_product', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='products', to='Product.typeproduct')),
             ],

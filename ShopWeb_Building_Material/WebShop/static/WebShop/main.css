@@ -12,6 +12,10 @@ ul {
   margin: 0;
 }
 
+th {
+  text-align: center;
+}
+
 .bg-steel {
   background-color: #5f788a;
 }

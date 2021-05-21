@@ -5,6 +5,8 @@ services:
         image: mysql
         command: --default-authentication-plugin=mysql_native_password
         restart: always
+        volumes:
+          - ~/data/db:/var/run/mysqld
         environment:
           MYSQL_DATABASE: 'shopweb_building_material'
           MYSQL_ROOT_PASSWORD: Mitcutenhat123

@@ -15,9 +15,9 @@ class Migration(migrations.Migration):
             name='Customer',
             fields=[
                 ('id', models.AutoField(primary_key=True, serialize=False)),
-                ('name', models.CharField(max_length=45)),
-                ('address', models.CharField(max_length=45, null=True)),
-                ('phone_number', models.CharField(max_length=45, null=True)),
+                ('name', models.CharField(max_length=255)),
+                ('address', models.CharField(max_length=255, null=True)),
+                ('phone_number', models.CharField(max_length=255, null=True)),
                 ('discription', models.TextField(null=True)),
             ],
             options={
@@ -28,9 +28,9 @@ class Migration(migrations.Migration):
             name='Provider',
             fields=[
                 ('id', models.AutoField(primary_key=True, serialize=False)),
-                ('name', models.CharField(max_length=45)),
-                ('address', models.CharField(max_length=45, null=True)),
-                ('phone_number', models.CharField(max_length=45, null=True)),
+                ('name', models.CharField(max_length=255)),
+                ('address', models.CharField(max_length=255, null=True)),
+                ('phone_number', models.CharField(max_length=255, null=True)),
                 ('discription', models.TextField(null=True)),
             ],
             options={

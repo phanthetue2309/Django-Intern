@@ -1,4 +1,4 @@
-from typing import List
+from django.urls import reverse_lazy
 from django.shortcuts import render
 from .models import *
 from django.contrib.auth.mixins import (LoginRequiredMixin,
@@ -30,7 +30,7 @@ class InputBillCreateView(LoginRequiredMixin, CreateView):
     model = InputBill
     fields = ['provider', 'input_date', 'flag']  # field must contains in models
     template_name = 'Input_bill/input_bill_form.html'
-
+    
     def form_valid(self, form):
         form.instance.staff = self.request.user
         return super().form_valid(form)
@@ -58,8 +58,8 @@ class InputBillUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView, A
 
 class InputBillDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView, ABC):
     model = InputBill
-    success_url = 'input'
-    template_name = 'Input_Billinput_bill_confirm_delete.html'
+    success_url = reverse_lazy('Bill:list-input')
+    template_name = 'Input_Bill/input_bill_confirm_delete.html'
 
     def test_func(self):
         input_bill = self.get_object()
@@ -104,7 +104,7 @@ class DetailInputUpdateView(LoginRequiredMixin, UpdateView, ABC):
 
 class DetailInputDeleteView(LoginRequiredMixin, DeleteView, ABC):
     model = DetailInputBill
-    template_name = 'vatlieu/input_bill/detail_input_bill/detail_bill_delete.html'
+    template_name = 'Input_bill/detail_input_bill/detail_bill_delete.html'
 
     def get_success_url(self):
         return self.object.get_update_return()
@@ -151,7 +151,7 @@ def create_detail_inputbill(request, pk):
                     warehouse.save()
 
             formset.save()
-            return redirect('/bill/input_bill')
+            return redirect('/bill/input')
 
     context = {'form': formset}
     return render(request, 'Input_Bill/detail_input_bill/input_bill_detail_form.html', context)
