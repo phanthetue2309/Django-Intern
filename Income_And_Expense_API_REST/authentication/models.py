@@ -11,6 +11,9 @@ from rest_framework_simplejwt.tokens import RefreshToken
 class UserManager(BaseUserManager):
 
     def create_user(self, username, email, password=None):
+        '''
+        method create user and using in serializers.py
+        '''
         if username is None:
             raise TypeError('Users should have a username')
         if email is None:

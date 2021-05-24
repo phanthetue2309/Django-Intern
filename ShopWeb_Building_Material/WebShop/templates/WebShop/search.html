@@ -1,6 +1,6 @@
 {% extends 'WebShop/base.html' %}
 {% block content %}
-<p>{{count}} of Products containing " {{query_string}} "</p>
+<p><strong>{{count}} of Products containing " {{query_string}} "</strong></p>
 <table border = "1" style="width:100%" content="Chi Tiết Hóa Đơn ">
     <tr>
         <th>Name of Product</th>
@@ -11,7 +11,7 @@
     <div>
         <tr>
         {% if user.is_authenticated %}
-        <th><a href="{% url 'product-detail' product.id %}">{{ product.name }}</h2></a></th>
+        <th><a href="{% url 'Product:product-detail' product.id %}">{{ product.name }}</h2></a></th>
         {% else %}
             <td>{{ product.name }} </td>
         {% endif %}

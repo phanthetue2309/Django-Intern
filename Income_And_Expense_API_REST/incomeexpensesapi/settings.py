@@ -16,7 +16,6 @@ import datetime
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
@@ -26,7 +25,7 @@ SECRET_KEY = '@6p-h7#oy4unyb4+(@i&3eq(knbkvjkeyv&@*8+a%f45b@mfm1'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['198.211.99.20', 'localhost', '127.0.0.1','192.168.1.16']
+ALLOWED_HOSTS = ['198.211.99.20', 'localhost', '127.0.0.1', '192.168.1.16']
 
 AUTH_USER_MODEL = 'authentication.User'
 # Application definition
@@ -99,7 +98,6 @@ CORS_ORIGIN_REGEX_WHITELIST = [
     r"^https://\w+\.netlify\.app$",
 ]
 
-
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
@@ -118,7 +116,6 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     )
 }
-
 
 SIMPLE_JWT = {
     # 'ACCESS_TOKEN_LIFETIME': datetime.timedelta(minutes=1), # time for access token 
@@ -144,7 +141,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
@@ -158,7 +154,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
@@ -171,7 +166,7 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'love01052309@gmail.com'
 EMAIL_HOST_PASSWORD = 'Dolynhan0105'
 
-LOGIN_REDIRECT_URL = 'schema-swagger-ui' # page appear after login
-LOGIN_URL = 'login' # link to login
+LOGIN_REDIRECT_URL = 'schema-swagger-ui'  # page appear after login
+LOGIN_URL = 'login'  # link to login
 LOGOUT_REDIRECT_URL = 'schema-swagger-ui'
 LOGOUT_URL = 'logout'

@@ -43,7 +43,6 @@ class InputBillUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView, A
     model = InputBill
     fields = ['provider', 'input_date', 'flag']
     template_name = 'Input_Bill/input_bill_form.html'
-    success_url = 'input'
 
     def form_valid(self, form):
         form.instance.staff = self.request.user
@@ -54,6 +53,11 @@ class InputBillUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView, A
         if self.request.user == input_bill.staff:
             return True
         return False
+    
+    def get_success_url(self):
+          # if you are passing 'pk' from 'urls' to 'DeleteView' capture that 'pk' as companyid and pass it to 'reverse_lazy()' function
+          input_id=self.kwargs['pk']
+          return reverse_lazy('Bill:input-bill-detail', kwargs={'pk': input_id})
 
 
 class InputBillDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView, ABC):

@@ -16,4 +16,8 @@ urlpatterns = [
     path('provider/<int:pk>/delete/', ProviderDeleteView.as_view(), name='provider-delete'),
     path('provider/<int:pk>', ProviderDetailView.as_view(), name='provider-detail'),
     
+
+    # API View 
+    path('api/customer/', CustomerListAPIView.as_view(), name="customers-api-list-post"),  # the link will be : http://127.0.0.1:8000/people/api/customer/
+    path('api/customer/<int:id>', CustomerDetailAPIView.as_view(), name="customer-api-detail"),
 ]

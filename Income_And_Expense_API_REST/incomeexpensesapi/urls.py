@@ -25,7 +25,7 @@ schema_view = get_schema_view(
         title="INCOME EXPENSES API",
         default_version='v1',
         description="Test description",
-        terms_of_service="https://www.ourapp.com/policies/terms/",
+        terms_of_service="",
         contact=openapi.Contact(email="tuepro123@gmail.com"),
         license=openapi.License(name="Test License"),
     ),
