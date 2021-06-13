@@ -1,15 +1,12 @@
 import requests
-from django.shortcuts import get_object_or_404
-from rest_framework import viewsets, status
 from rest_framework.decorators import api_view, permission_classes, action
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 
 from .serializer import CreateUserSerializer, UserSerializer
-from ..models import User
 
-CLIENT_ID = 'MxYOTJnmfvamsgs2ZVgxIwiB1U61CKTEP2Xx4P51'
-CLIENT_SECRET = 'ZR4yQHaENDCrut0qpotQ1WB5ZiwrgoI7Iwz0Z36rBUMODSDhLVrCf6Ed3KmWkDInUfQxVW7zkZgj2ULSj4BS8EjwgcOFPhDpOqJCeDXFv2M8cvPcAjVF8IMjtALfAjbr'
+CLIENT_ID = 'vPFYpy2nq43NOWrWYPbIG0JLMydXeU0B0Z6bGAGE'
+CLIENT_SECRET = '3C0LwDBzdVmtlO2Q1X0thsHpLtfugSEUTO4YVlK8V3cL0Gk8OlUKFIv1KDv7aDOxMYjAGtqX85r4PCxsHJXAhTU2ezU8f5uPvfrGH9J8XsHodvF2BMtTIX116AeGucLs'
 
 
 @api_view(['POST'])
@@ -27,7 +24,7 @@ def register(request):
         serializer.save()
         # Then we get a token for the created user.
         # This could be done differently
-        r = requests.post('http://0.0.0.0:8000/o/token/',
+        r = requests.post('http://127.0.0.1:8000/o/token/',
                           data={
                               'grant_type': 'password',
                               'username': request.data['username'],
@@ -48,7 +45,7 @@ def token(request):
     {"username": "username", "password": "1234abcd"}
     """
     r = requests.post(
-        'http://0.0.0.0:8000/o/token/',
+        'http://127.0.0.1:8000/o/token/',
         data={
             'grant_type': 'password',
             'username': request.data['username'],
@@ -57,6 +54,7 @@ def token(request):
             'client_secret': CLIENT_SECRET,
         },
     )
+    print(r.json())
     return Response(r.json())
 
 
@@ -68,7 +66,7 @@ def refresh_token(request):
     {"refresh_token": "<token>"}
     """
     r = requests.post(
-        'http://0.0.0.0:8000/o/token/',
+        'http://127.0.0.1:8000/o/token/',
         data={
             'grant_type': 'refresh_token',
             'refresh_token': request.data['refresh_token'],
@@ -87,7 +85,7 @@ def revoke_token(request):
     {"token": "<token>"}
     """
     r = requests.post(
-        'http://0.0.0.0:8000/o/revoke_token/',
+        'http://127.0.0.1:8000/o/revoke_token/',
         data={
             'token': request.data['token'],
             'client_id': CLIENT_ID,

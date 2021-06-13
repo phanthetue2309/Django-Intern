@@ -5,4 +5,4 @@ from unicorn.models import Unicorn
 class UnicornSerializer(serializers.ModelSerializer):
     class Meta:
         model = Unicorn
-        fields = ('id', 'name', 'age')
+        fields = ('name', 'age')

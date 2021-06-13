@@ -6,7 +6,7 @@ import sys
 
 def main():
     """Run administrative tasks."""
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'django_oauth_toolkit_restframework.settings')
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'OauthToolket_RestFramework.settings')
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:

@@ -1,0 +1,4 @@
+python manage.py createsuperuser
+username : tue
+email : tuepro123@gmail.com
+pass : Thetue2309 ( all users other is same password)

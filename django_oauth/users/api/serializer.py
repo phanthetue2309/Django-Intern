@@ -15,6 +15,7 @@ class CreateUserSerializer(serializers.ModelSerializer):
             'password': {'write_only': True}
         }
 
+
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User

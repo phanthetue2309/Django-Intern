@@ -1,5 +1,5 @@
 """
-WSGI config for django_oauth_toolkit_restframework project.
+WSGI config for OauthToolket_RestFramework project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'django_oauth_toolkit_restframework.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'OauthToolket_RestFramework.settings')
 
 application = get_wsgi_application()
