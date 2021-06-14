@@ -1,0 +1,4 @@
+Client id=3ecLc0rySMIQwU0nfWjan4jEKiTX7nib83BoGWXA
+Client secret=BPI1AK8fyXkKJbVe6ZyaSExZGvqtlWviWgYbAzTBSDbHOydUDCMRdkm3WuahPOQiaX5vzdNqaEvG3wlzr9QEvZ5j2UZwlto8BbeCbFtMkGKG5xlCyr8dzXyzgdqds0FV
+Client type : confidential
+Authorization Grant Type : password

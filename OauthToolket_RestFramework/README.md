@@ -13,17 +13,17 @@
 - Get access token : 
     ```
     {
-        "access_token": "NP5MR1MNjzv39R6pZ4VFdbL7Yyscmz", 
+        "access_token": "t4waPk5NKpnzoskN380YolhQKHIclY", 
         "expires_in": 36000, 
         "token_type": "Bearer", 
         "scope": "read write groups", 
-        "refresh_token": "hixOU41SeEKnJVJ7QH8Zkw1cYaruBJ"
+        "refresh_token": "NijnaCmrSuLfbp0GvKsM9T9e6roq4S"
     }
     ```
 - Then use this : 
     ```
     curl -H "Authorization: Bearer <your_access_token>" http://localhost:8000/users/
-    curl -H "Authorization: Bearer NP5MR1MNjzv39R6pZ4VFdbL7Yyscmz" http://localhost:8000/users/
+    curl -H "Authorization: Bearer t4waPk5NKpnzoskN380YolhQKHIclY" http://localhost:8000/users/
     ```
 
 - Then get this : 
@@ -59,6 +59,7 @@
 - Running with one user : 
     ```
     curl -H "Authorization: Bearer <your_access_token>" http://localhost:8000/users/1/
+    curl -H "Authorization: Bearer t4waPk5NKpnzoskN380YolhQKHIclY" http://localhost:8000/users/1/
     ```
   
 - Running with group : 
@@ -99,14 +100,31 @@
 
     ```
    
-- Result : ```{"access_token": "z6WkfiBMVl5xpXfkcTx53Azl1b22I8", "expires_in": 36000, "token_type": "Bearer", "scope": "read", "refresh_token": "Hcxopbh1f80cTJaKHVURy9zysIHjty"}```
+- Result : ```{"access_token": "nujCtO6fgG73RNkeNqFqOD2WqvQ3n2", "expires_in": 36000, "token_type": "Bearer", "scope": "read", "refresh_token": "fCHisuWHnvoUCmANxXVXxBegIsfi8n"}```
   
 - Group Scope : 
     ```
-    curl -H "Authorization: Bearer IxOemwptYBSdhYqVC2Fv8eMCSG7z2M" http://localhost:8000/users/
-    curl -H "Authorization: Bearer IxOemwptYBSdhYqVC2Fv8eMCSG7z2M" http://localhost:8000/groups/
-    curl -H "Authorization: Bearer IxOemwptYBSdhYqVC2Fv8eMCSG7z2M" -X POST -d"username=foo&password=bar" http://localhost:8000/users/
+    curl -H "Authorization: Bearer nujCtO6fgG73RNkeNqFqOD2WqvQ3n2" http://localhost:8000/users/
+    curl -H "Authorization: Bearer nujCtO6fgG73RNkeNqFqOD2WqvQ3n2" http://localhost:8000/groups/
+    curl -H "Authorization: Bearer nujCtO6fgG73RNkeNqFqOD2WqvQ3n2" -X POST -d"username=foo&password=bar" http://localhost:8000/users/
     ```
+
+- When you only assign read scope, so you cannot to access using write scope when run this command :
+  
+      curl -H "Authorization: Bearer nujCtO6fgG73RNkeNqFqOD2WqvQ3n2" -X POST -d"username=foo&password=bar" http://localhost:8000/users/
+- Therefore, you have to grant new access for user like this :
+
+      curl -X POST -d "grant_type=password&username=tue&password=Thetue2309&scope=write" -u"BwRi7vofWyieSaGILcQPfm9ytq6AUrlmjIIt1Sbu:FRgi0uEZKj79EfBifp2xk1KSbUqnmVEij88WW3jQXgmTXNOiMlEyuts5YNqzYHHKWG79EqpZjF8erXNCtWaJAxdnGRbOu1FiLXXjueXbHg3t8mvbxvxBYlbsxOlSOdHl" http://localhost:8000/o/token/
+
+- Result : ```{"access_token": "YFt7OGDMUOCkyIMwnlrzPARgvCGkMg", "expires_in": 36000, "token_type": "Bearer", "scope": "write", "refresh_token": "qfxhtAoaLpQghetfxwyDuHinpcIH2V"}```
+
+- Then assign create again : 
+  
+      curl -H "Authorization: Bearer YFt7OGDMUOCkyIMwnlrzPARgvCGkMg" -X POST -d"username=foo&password=bar" http://localhost:8000/users/
+
+- Result : ```{"username":"foo","email":"","first_name":"","last_name":""}```
+
+
 
 ## Permission
 

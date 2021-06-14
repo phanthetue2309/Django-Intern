@@ -18,7 +18,7 @@ Remember when using this link you have to change host from : 0.0.0.0 to 127.0.0.
 - We have this in link : 
     + response_type: code
     + client_id: **vPFYpy2nq43NOWrWYPbIG0JLMydXeU0B0Z6bGAGE**
-    + redirect_uri: http://127.0.0.1:8000/noexist/callbac
+    + redirect_uri: http://127.0.0.1:8000/noexist/callback
 - After authorize we have added data to grand like this : 
     ![grant](image/grants_add.PNG)
 - Detail of this : 
