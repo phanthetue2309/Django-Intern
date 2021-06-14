@@ -58,5 +58,6 @@ urlpatterns = [
     path('groups/', GroupList.as_view()),
     path('groups2/', GroupList2.as_view()),
     path('list/album/', AlbumList.as_view()),
+    path('create/album/', CreateAlbum.as_view()),
     # ...
 ]

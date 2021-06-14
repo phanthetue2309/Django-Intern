@@ -168,6 +168,11 @@ It shows the data even though the scope in class not exists in code. Maybe becau
 
       
 
+### Test case 3 : 
+#### Create , update, delete 
+
+
+
 ## Permission
 
 ### TokenHasScope

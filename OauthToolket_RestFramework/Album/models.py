@@ -22,3 +22,10 @@ class AlbumList(generics.ListAPIView):
     required_scopes = ['albums']
     queryset = Album.objects.all()
     serializer_class = AlbumSerializer
+
+
+class CreateAlbum(generics.ListCreateAPIView):
+    permission_classes = [permissions.IsAuthenticated, TokenHasReadWriteScope]
+    required_scopes = ['albums']
+    queryset = Album.objects.all()
+    serializer_class = AlbumSerializer
