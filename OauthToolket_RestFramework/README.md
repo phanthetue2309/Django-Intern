@@ -91,7 +91,7 @@
     {"access_token": "IxOemwptYBSdhYqVC2Fv8eMCSG7z2M", "expires_in": 36000, "token_type": "Bearer", "scope": "read write groups", "refresh_token": "wKigOrENnon23EQSFdKPWemqT9p44o"}
     ```
 
-###  Testing Restricted Access
+##  Testing Restricted Access
 
 -  Try to access resources using a token with a restricted scope adding a scope parameter to the token request
     ```
@@ -112,6 +112,7 @@
 - When you only assign read scope, so you cannot to access using write scope when run this command :
   
       curl -H "Authorization: Bearer nujCtO6fgG73RNkeNqFqOD2WqvQ3n2" -X POST -d"username=foo&password=bar" http://localhost:8000/users/
+  
 - Therefore, you have to grant new access for user like this :
 
       curl -X POST -d "grant_type=password&username=tue&password=Thetue2309&scope=write" -u"BwRi7vofWyieSaGILcQPfm9ytq6AUrlmjIIt1Sbu:FRgi0uEZKj79EfBifp2xk1KSbUqnmVEij88WW3jQXgmTXNOiMlEyuts5YNqzYHHKWG79EqpZjF8erXNCtWaJAxdnGRbOu1FiLXXjueXbHg3t8mvbxvxBYlbsxOlSOdHl" http://localhost:8000/o/token/
@@ -124,7 +125,48 @@
 
 - Result : ```{"username":"foo","email":"","first_name":"","last_name":""}```
 
+**Why assign failed ?**
+![img.png](img.png)
 
+- Looking at picture you can see that if your scopes does not contain in the Oauth2 Provider then it will be Failed when make other scope.
+- However, when you see in picture again you can see that scope can be merged with another like : read groups
+
+## Test with another scopes 
+### Test case 1 : 
+#### Using scopes is children of root scopes
+
+First you have permission in class group list :
+
+![img_1.png](img_1.png)
+
+Then you create new scopes is "read groups" in code : 
+
+![img_2.png](img_2.png)
+
+It shows the data even though the scope in class not exists in code. Maybe because of it has permission_classes = [permissions.IsAuthenticated, TokenHasScope]
+
+
+    curl -X POST -d "grant_type=password&username=tue&password=Thetue2309&scope=read user"-u"BwRi7vofWyieSaGILcQPfm9ytq6AUrlmjIIt1Sbu:FRgi0uEZKj79EfBifp2xk1KSbUqnmVEij88WW3jQXgmTXNOiMlEyuts5YNqzYHHKWG79EqpZjF8erXNCtWaJAxdnGRbOu1FiLXXjueXbHg3t8mvbxvxBYlbsxOlSOdHl" http://localhost:8000/o/token/
+
+
+### Test case 2 : 
+#### Create new model to add scope 
+- First I create new App is Album 
+- Then create model of it => create serializer and api view
+- Add model to site admin then notice this : 
+    - When data in admin create it will be had 's' at the end of model
+    - Therefore, we have to add 'albums' to oauth provider like this : 
+      ![img_3.png](img_3.png)
+    - Add scope to API view
+      ![img_4.png](img_4.png)
+    - After that you will run in cmd : 
+      ![img_5.png](img_5.png)
+      
+    - You can see that run success, and the after have key we will get data :
+  
+           [{"id":1,"name":"Tue Album","release_date":"2021-06-02","num_stars":1,"artist":1}]
+
+      
 
 ## Permission
 
@@ -138,7 +180,7 @@
   class SongView(views.APIView):
       authentication_classes = [OAuth2Authentication]
       permission_classes = [TokenHasScope]
-      required_scopes = ['music']`
+      required_scopes = ['music']
   ```
   The required_scopes attribute is mandatory.
 
@@ -163,7 +205,7 @@ When a request is performed both the READ_SCOPE \ WRITE_SCOPE and ‘music’ sc
 ### TokenHasResourceScope
 The TokenHasResourceScope permission class allows access only when the current access token has been authorized for all the scopes listed in the required_scopes field of the view but according of request’s method.
 
-When the current request’s method is one of the “safe” methods, the access is allowed only if the access token has been authorized for the scope:read scope (for example music:read). When the request’s method is one of “non safe” methods, the access is allowed only if the access token has been authorized for the scope:write scope (for example music:write).
+When the current request’s method is one of the “safe” methods, the access is allowed only if the access token has been authorized for the scope:read scope (for example music:read). When the request’s method is one of “non-safe” methods, the access is allowed only if the access token has been authorized for the scope:write scope (for example music:write).
 
 ```
 class SongView(views.APIView):

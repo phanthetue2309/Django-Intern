@@ -2,6 +2,7 @@ from django.urls import path, include
 from django.contrib.auth.models import User, Group
 from django.contrib import admin
 from rest_framework import generics, permissions, serializers
+from Album.models import *
 
 from oauth2_provider.contrib.rest_framework import TokenHasReadWriteScope, TokenHasScope
 
@@ -41,6 +42,13 @@ class GroupList(generics.ListAPIView):
     serializer_class = GroupSerializer
 
 
+class GroupList2(generics.ListAPIView):
+    permission_classes = [permissions.IsAuthenticated, TokenHasScope]
+    required_scopes = ['users']
+    queryset = Group.objects.all()
+    serializer_class = GroupSerializer
+
+
 # Setup the URLs and include login URLs for the browsable API.
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -48,5 +56,7 @@ urlpatterns = [
     path('users/', UserList.as_view()),
     path('users/<pk>/', UserDetails.as_view()),
     path('groups/', GroupList.as_view()),
+    path('groups2/', GroupList2.as_view()),
+    path('list/album/', AlbumList.as_view()),
     # ...
 ]
