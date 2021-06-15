@@ -145,6 +145,15 @@ Then you create new scopes is "read groups" in code :
 
 It shows the data even though the scope in class not exists in code. Maybe because of it has permission_classes = [permissions.IsAuthenticated, TokenHasScope]
 
+### Test create another assign 
+
+- **Test with create read and write** :
+   
+      curl -X POST -d "grant_type=password&username=tue&password=Thetue2309&scope=read write" -u"BwRi7vofWyieSaGILcQPfm9ytq6AUrlmjIIt1Sbu:FRgi0uEZKj79EfBifp2xk1KSbUqnmVEij88WW3jQXgmTXNOiMlEyuts5YNqzYHHKWG79EqpZjF8erXNCtWaJAxdnGRbOu1FiLXXjueXbHg3t8mvbxvxBYlbsxOlSOdHl" http://localhost:8000/o/token/
+
+- Then the result will be : 
+  
+      {"access_token": "hyrRZx2XPr9SNCnDlfotTet4Wra66C", "expires_in": 36000, "token_type": "Bearer", "scope": "read write", "refresh_token": "K2b1gSrmDhYHT7dt6ulwoyR6bGCaG1"}
 
     curl -X POST -d "grant_type=password&username=tue&password=Thetue2309&scope=read user"-u"BwRi7vofWyieSaGILcQPfm9ytq6AUrlmjIIt1Sbu:FRgi0uEZKj79EfBifp2xk1KSbUqnmVEij88WW3jQXgmTXNOiMlEyuts5YNqzYHHKWG79EqpZjF8erXNCtWaJAxdnGRbOu1FiLXXjueXbHg3t8mvbxvxBYlbsxOlSOdHl" http://localhost:8000/o/token/
 
@@ -171,7 +180,66 @@ It shows the data even though the scope in class not exists in code. Maybe becau
 ### Test case 3 : 
 #### Create , update, delete 
 
+- Test with create another album :
 
+    - Create access token : 
+      
+          curl -X POST -d "grant_type=password&username=tue&password=Thetue2309&scope=read write albums" -u"BwRi7vofWyieSaGILcQPfm9ytq6AUrlmjIIt1Sbu:FRgi0uEZKj79EfBifp2xk1KSbUqnmVEij88WW3jQXgmTXNOiMlEyuts5YNqzYHHKWG79EqpZjF8erXNCtWaJAxdnGRbOu1FiLXXjueXbHg3t8mvbxvxBYlbsxOlSOdHl" http://localhost:8000/o/token/
+    
+    - Using access token to add new data albums : 
+      
+          curl -H "Authorization: Bearer c2wA9oyVyYNIyNu9aanAmEO8BfxvZT" -X POST -d"artist=1&name=Second Album&release_date=2021-06-15&num_stars=1" http://localhost:8000/create/album/
+
+    - **Remember this**
+      + When you create using ForeignKey that you have to put ForeignKey to parameter :
+        + Such as : 
+          + artist = 1 (1 is id of user)
+          + name 
+          + release_date 
+          + num_stars 
+
+- Test with update another album : 
+    - Cannot use with curl, so I change to using POSTMAN instead
+    - Then I create APIView of update album : 
+        ```
+        class UpdateAlbum(generics.UpdateAPIView):
+          permission_classes = [permissions.IsAuthenticated, TokenHasReadWriteScope]
+          required_scopes = ['albums']
+          queryset = Album.objects.all()
+          serializer_class = AlbumSerializer
+          lookup_field = 'pk'
+        ```
+    - Run in post man with access_token and remember your scope to running:
+      + If you're using read scope, so you cannot update with code above
+      + You have to have read and write scope to update data 
+    - Running success in POSTMAN :
+      + With read scope only : 
+      ![img_6.png](img_6.png)
+        
+      + With read and write scope : 
+      ![img_7.png](img_7.png)
+        
+### Test case 4 
+#### With read write scope but not have album scope
+- If you're just using read write scope and do not use album scope then it will tell that :
+  
+    {"detail": "You do not have permission to perform this action."}
+  
+- Or if you're using read write groups scope and do not use album scope it will tell that you do not have permission too.
+    
+
+### Test case 5
+#### Create new scope not in model in settings.py ( such as : test)
+- Test case 6.1 : scope = read groups read write albums
+    - Cannot use because of 
+    
+          curl -X POST -d "grant_type=password&username=tue&password=Thetue2309&scope(0)=create&scope(1)=read&scope(2)=update" -u"BwRi7vofWyieSaGILcQPfm9ytq6AUrlmjIIt1Sbu:FRgi0uEZKj79EfBifp2xk1KSbUqnmVEij88WW3jQXgmTXNOiMlEyuts5YNqzYHHKWG79EqpZjF8erXNCtWaJAxdnGRbOu1FiLXXjueXbHg3t8mvbxvxBYlbsxOlSOdHl" http://localhost:8000/o/token/
+
+    - In this command you can see that it have three scope : 
+        + scope(0)=create&scope(1)=read&scope(2)=update
+    
+### Test case 6
+#### Using ViewSet 
 
 ## Permission
 

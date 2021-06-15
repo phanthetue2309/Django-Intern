@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'oauth2_provider',
     'rest_framework',
     'Album',
+    'Instrument',
 ]
 
 REST_FRAMEWORK = {
@@ -61,10 +62,14 @@ MIDDLEWARE = [
     'oauth2_provider.middleware.OAuth2TokenMiddleware',
 ]
 
+
 OAUTH2_PROVIDER = {
     # this is the list of available scopes
     'SCOPES': {'read': 'Read scope', 'write': 'Write scope', 'groups': 'Access to your groups',
-               'users': 'Access user', 'albums': 'Access album'}
+               'users': 'Access user', 'albums': 'Access album', 'instruments' : 'Access Instruments',
+               'create' : 'Create', 'update' : 'Update', 'delete' : 'Delete obj',
+               'get_public' : 'Get data',
+               }
 }
 
 AUTHENTICATION_BACKENDS = (

@@ -1,53 +1,14 @@
 from django.urls import path, include
-from django.contrib.auth.models import User, Group
 from django.contrib import admin
-from rest_framework import generics, permissions, serializers
-from Album.models import *
-
-from oauth2_provider.contrib.rest_framework import TokenHasReadWriteScope, TokenHasScope
+from Album.views import *
+from Instrument.views import *
+from rest_framework import routers
+from .views import *
 
 admin.autodiscover()
-
-
-# first we define the serializers
-class UserSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = ('username', 'email', "first_name", "last_name")
-
-
-class GroupSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Group
-        fields = ("name",)
-
-
-# Create the API views
-class UserList(generics.ListCreateAPIView):
-    permission_classes = [permissions.IsAuthenticated, TokenHasReadWriteScope]
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
-
-
-class UserDetails(generics.RetrieveAPIView):
-    permission_classes = [permissions.IsAuthenticated, TokenHasReadWriteScope]
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
-
-
-class GroupList(generics.ListAPIView):
-    permission_classes = [permissions.IsAuthenticated, TokenHasScope]
-    required_scopes = ['groups']
-    queryset = Group.objects.all()
-    serializer_class = GroupSerializer
-
-
-class GroupList2(generics.ListAPIView):
-    permission_classes = [permissions.IsAuthenticated, TokenHasScope]
-    required_scopes = ['users']
-    queryset = Group.objects.all()
-    serializer_class = GroupSerializer
-
+router = routers.DefaultRouter()
+router.register('album-test',AlbumViewSet,basename='album_test')
+router.register('instrument-test',InstrumentViewSet,basename='instrument_test')
 
 # Setup the URLs and include login URLs for the browsable API.
 urlpatterns = [
@@ -58,6 +19,9 @@ urlpatterns = [
     path('groups/', GroupList.as_view()),
     path('groups2/', GroupList2.as_view()),
     path('list/album/', AlbumList.as_view()),
-    path('create/album/', CreateAlbum.as_view()),
+    # path('create/album/', CreateAlbum.as_view()),
+    # path('edit/album/<int:pk>', UpdateAlbum.as_view()),
+    path('album-update/<int:pk>', HandleAlbum.as_view()),
+    path('api/',include(router.urls))
     # ...
 ]
