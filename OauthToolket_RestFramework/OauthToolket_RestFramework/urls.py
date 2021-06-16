@@ -18,6 +18,7 @@ urlpatterns = [
     # path('create/album/', CreateAlbum.as_view()),
     # path('edit/album/<int:pk>', UpdateAlbum.as_view()),
     # path('album-update/<int:pk>', HandleAlbum.as_view()),
-    path('api/', include(router.urls))
+    path('api/', include(router.urls)),
+    path('authentication/', include('accounts.urls')),
     # ...
 ]
