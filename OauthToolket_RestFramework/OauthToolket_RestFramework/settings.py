@@ -9,8 +9,9 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
-
+import os
 from pathlib import Path
+import json
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -37,9 +38,14 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'oauth2_provider',
     'rest_framework',
+    'corsheaders',
     'Album',
     'Instrument',
+    'accounts',
+    'django_extensions'
 ]
+
+AUTH_USER_MODEL = 'accounts.User'
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
@@ -54,6 +60,7 @@ REST_FRAMEWORK = {
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -62,14 +69,27 @@ MIDDLEWARE = [
     'oauth2_provider.middleware.OAuth2TokenMiddleware',
 ]
 
+CORS_ORIGIN_ALLOW_ALL = True
+
+
+try:
+    with open('OauthToolket_RestFramework/scopes.json') as scope_file:
+        data = json.load(scope_file)
+        scopes = {}
+        roles = {}
+        for i in range(len(data)):
+            roles[data[i]["role_name"]] = data[i]["scopes"]
+            for scope in data[i]["scopes"]:
+                scopes.update(scope)
+except Exception as e:
+    print(e)
+
+print(roles)
+print(scopes)
 
 OAUTH2_PROVIDER = {
     # this is the list of available scopes
-    'SCOPES': {'read': 'Read scope', 'write': 'Write scope', 'groups': 'Access to your groups',
-               'users': 'Access user', 'albums': 'Access album', 'instruments' : 'Access Instruments',
-               'create' : 'Create', 'update' : 'Update', 'delete' : 'Delete obj',
-               'get_public' : 'Get data',
-               }
+    'SCOPES': scopes
 }
 
 AUTHENTICATION_BACKENDS = (

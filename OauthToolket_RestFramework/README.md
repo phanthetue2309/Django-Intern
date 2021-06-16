@@ -5,6 +5,11 @@
 - Client type : ```Confidential```
 - Authorization Grant Type : ```password```
 
+#### Remember something :
+- Application and User is : 
+    + One user have many applications
+    
+
 - Run in cmd : 
     ```
   
