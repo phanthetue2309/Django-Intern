@@ -39,7 +39,7 @@ def register(request):
 
 @api_view(['POST'])
 @permission_classes([AllowAny])
-def token(request):
+def login(request):
     """
     Gets tokens with email and password. Input should be in the format:
     {"email": "email", "password": "1234abcd"}
