@@ -4,10 +4,6 @@ from accounts.models import User
 
 class CreateUserSerializer(serializers.ModelSerializer):
 
-    # def create(self, validated_data):
-    #     user = User.objects.create_user(**validated_data)
-    #     return user
-
     def save(self):
         email = self.validated_data.get('email')
         password = self.validated_data.get('password')

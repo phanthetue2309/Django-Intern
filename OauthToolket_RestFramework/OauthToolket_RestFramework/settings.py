@@ -84,9 +84,6 @@ try:
 except Exception as e:
     print(e)
 
-print(roles)
-print(scopes)
-
 OAUTH2_PROVIDER = {
     # this is the list of available scopes
     'SCOPES': scopes

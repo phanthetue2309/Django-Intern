@@ -131,7 +131,7 @@
 - Result : ```{"username":"foo","email":"","first_name":"","last_name":""}```
 
 **Why assign failed ?**
-![img.png](img.png)
+![img.png](image/img.png)
 
 - Looking at picture you can see that if your scopes does not contain in the Oauth2 Provider then it will be Failed when make other scope.
 - However, when you see in picture again you can see that scope can be merged with another like : read groups
@@ -142,11 +142,11 @@
 
 First you have permission in class group list :
 
-![img_1.png](img_1.png)
+![img_1.png](image/img_1.png)
 
 Then you create new scopes is "read groups" in code : 
 
-![img_2.png](img_2.png)
+![img_2.png](image/img_2.png)
 
 It shows the data even though the scope in class not exists in code. Maybe because of it has permission_classes = [permissions.IsAuthenticated, TokenHasScope]
 
@@ -170,11 +170,11 @@ It shows the data even though the scope in class not exists in code. Maybe becau
 - Add model to site admin then notice this : 
     - When data in admin create it will be had 's' at the end of model
     - Therefore, we have to add 'albums' to oauth provider like this : 
-      ![img_3.png](img_3.png)
+      ![img_3.png](image/img_3.png)
     - Add scope to API view
-      ![img_4.png](img_4.png)
+      ![img_4.png](image/img_4.png)
     - After that you will run in cmd : 
-      ![img_5.png](img_5.png)
+      ![img_5.png](image/img_5.png)
       
     - You can see that run success, and the after have key we will get data :
   
@@ -219,10 +219,10 @@ It shows the data even though the scope in class not exists in code. Maybe becau
       + You have to have read and write scope to update data 
     - Running success in POSTMAN :
       + With read scope only : 
-      ![img_6.png](img_6.png)
+      ![img_6.png](image/img_6.png)
         
       + With read and write scope : 
-      ![img_7.png](img_7.png)
+      ![img_7.png](image/img_7.png)
         
 ### Test case 4 
 #### With read write scope but not have album scope

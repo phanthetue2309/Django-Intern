@@ -14,10 +14,6 @@ router.register('instrument-test', InstrumentViewSet, basename='instrument_test'
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
-    # path('list/album/', AlbumList.as_view()),
-    # path('create/album/', CreateAlbum.as_view()),
-    # path('edit/album/<int:pk>', UpdateAlbum.as_view()),
-    # path('album-update/<int:pk>', HandleAlbum.as_view()),
     path('api/', include(router.urls)),
     path('authentication/', include('accounts.urls')),
     # ...

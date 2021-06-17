@@ -24,21 +24,24 @@ def register(request):
         serializer.save()
         # Then we get a token for the created user.
         # This could be done differently
-        # r = requests.post('http://127.0.0.1:8000/o/token/',
-        #                   data={
-        #                       'grant_type': 'password',
-        #                       'email': request.data['email'],
-        #                       'password': request.data['password'],
-        #                   },
-        #                   )
-        # return Response(r.json())
-        return Response(serializer.data)
+        r = requests.post('http://127.0.0.1:8000/o/token/',
+                          data={
+                              'grant_type': 'password',
+                              'username': request.data['email'],
+                              'email': request.data['email'],
+                              'password': request.data['password'],
+                              'client_id': CLIENT_ID,
+                              'client_secret': CLIENT_SECRET,
+                              'scope': 'albums:read albums:write instruments:read',
+                          },
+                          )
+        return Response(r.json())
     return Response(serializer.errors)
 
 
 @api_view(['POST'])
 @permission_classes([AllowAny])
-def token(request):
+def login(request):
     """
     Gets tokens with email and password. Input should be in the format:
     {"email": "email", "password": "1234abcd"}
@@ -47,6 +50,7 @@ def token(request):
         'http://127.0.0.1:8000/o/token/',
         data={
             'grant_type': 'password',
+            'username': request.data['email'],
             'email': request.data['email'],
             'password': request.data['password'],
             'client_id': CLIENT_ID,

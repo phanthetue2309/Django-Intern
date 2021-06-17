@@ -76,7 +76,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         db_table = 'hr_users'
 
     def __str__(self):
-        return str(self.id)
+        return str(str(self.id) + " : " + self.email)
 
     def has_perm(self, perm, obj=None):
         return True
