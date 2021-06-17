@@ -27,7 +27,7 @@ def register(request):
         r = requests.post('http://127.0.0.1:8000/o/token/',
                           data={
                               'grant_type': 'password',
-                              'email': request.data['email'],
+                              'username': request.data['email'],
                               'password': request.data['password'],
                               'client_id': CLIENT_ID,
                               'client_secret': CLIENT_SECRET,
@@ -48,7 +48,7 @@ def login(request):
         'http://127.0.0.1:8000/o/token/',
         data={
             'grant_type': 'password',
-            'email': request.data['email'],
+            'username': request.data['email'],
             'password': request.data['password'],
             'client_id': CLIENT_ID,
             'client_secret': CLIENT_SECRET,
