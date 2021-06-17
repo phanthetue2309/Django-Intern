@@ -381,3 +381,12 @@ paths:
           description: song deleted
 
 ```
+
+## Create model user in HRM web and try to add Scope in that 
+    
+## To show full URL : 
+    - pip install django-extensions
+    - python manage.py show_urls
+
+
+## 
