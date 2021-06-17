@@ -31,6 +31,7 @@ def register(request):
                               'password': request.data['password'],
                               'client_id': CLIENT_ID,
                               'client_secret': CLIENT_SECRET,
+                              'scope': "albums:read albums:write instruments:read"
                           },
                           )
         return Response(r.json())
@@ -52,6 +53,7 @@ def login(request):
             'password': request.data['password'],
             'client_id': CLIENT_ID,
             'client_secret': CLIENT_SECRET,
+            'scope': "albums:read albums:write instruments:read"
         },
     )
     print(r.json())
