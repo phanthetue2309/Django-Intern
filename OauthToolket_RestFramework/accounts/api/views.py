@@ -28,7 +28,6 @@ def register(request):
                           data={
                               'grant_type': 'password',
                               'username': request.data['email'],
-                              'email': request.data['email'],
                               'password': request.data['password'],
                               'client_id': CLIENT_ID,
                               'client_secret': CLIENT_SECRET,
@@ -51,13 +50,11 @@ def login(request):
         data={
             'grant_type': 'password',
             'username': request.data['email'],
-            'email': request.data['email'],
             'password': request.data['password'],
             'client_id': CLIENT_ID,
             'client_secret': CLIENT_SECRET,
         },
     )
-    print(r.json())
     return Response(r.json())
 
 

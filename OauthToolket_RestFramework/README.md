@@ -13,7 +13,7 @@
 - Run in cmd : 
     ```
   
-    curl -X POST -d "grant_type=password&username=tue&password=Thetue2309" -u"BwRi7vofWyieSaGILcQPfm9ytq6AUrlmjIIt1Sbu:FRgi0uEZKj79EfBifp2xk1KSbUqnmVEij88WW3jQXgmTXNOiMlEyuts5YNqzYHHKWG79EqpZjF8erXNCtWaJAxdnGRbOu1FiLXXjueXbHg3t8mvbxvxBYlbsxOlSOdHl" http://localhost:8000/o/token/
+    curl -X POST -d "grant_type=password&username=tuepro123@gmail.com&password=Thetue2309" -u"BwRi7vofWyieSaGILcQPfm9ytq6AUrlmjIIt1Sbu:FRgi0uEZKj79EfBifp2xk1KSbUqnmVEij88WW3jQXgmTXNOiMlEyuts5YNqzYHHKWG79EqpZjF8erXNCtWaJAxdnGRbOu1FiLXXjueXbHg3t8mvbxvxBYlbsxOlSOdHl" http://localhost:8000/o/token/
     ```  
 - Get access token : 
     ```
@@ -101,7 +101,7 @@
 -  Try to access resources using a token with a restricted scope adding a scope parameter to the token request
     ```
     curl -X POST -d "grant_type=password&username=<user_name>&password=<password>&scope=read" -u"<client_id>:<client_secret>" http://localhost:8000/o/token/
-    curl -X POST -d "grant_type=password&username=tue&password=Thetue2309&scope=read" -u"BwRi7vofWyieSaGILcQPfm9ytq6AUrlmjIIt1Sbu:FRgi0uEZKj79EfBifp2xk1KSbUqnmVEij88WW3jQXgmTXNOiMlEyuts5YNqzYHHKWG79EqpZjF8erXNCtWaJAxdnGRbOu1FiLXXjueXbHg3t8mvbxvxBYlbsxOlSOdHl" http://localhost:8000/o/token/
+    curl -X POST -d "grant_type=password&username=tuepro123@gmail.com&password=Thetue2309&scope=read" -u"BwRi7vofWyieSaGILcQPfm9ytq6AUrlmjIIt1Sbu:FRgi0uEZKj79EfBifp2xk1KSbUqnmVEij88WW3jQXgmTXNOiMlEyuts5YNqzYHHKWG79EqpZjF8erXNCtWaJAxdnGRbOu1FiLXXjueXbHg3t8mvbxvxBYlbsxOlSOdHl" http://localhost:8000/o/token/
 
     ```
    
@@ -120,7 +120,7 @@
   
 - Therefore, you have to grant new access for user like this :
 
-      curl -X POST -d "grant_type=password&username=tue&password=Thetue2309&scope=write" -u"BwRi7vofWyieSaGILcQPfm9ytq6AUrlmjIIt1Sbu:FRgi0uEZKj79EfBifp2xk1KSbUqnmVEij88WW3jQXgmTXNOiMlEyuts5YNqzYHHKWG79EqpZjF8erXNCtWaJAxdnGRbOu1FiLXXjueXbHg3t8mvbxvxBYlbsxOlSOdHl" http://localhost:8000/o/token/
+      curl -X POST -d "grant_type=password&username=tuepro123@gmail.com&password=Thetue2309&scope=write" -u"BwRi7vofWyieSaGILcQPfm9ytq6AUrlmjIIt1Sbu:FRgi0uEZKj79EfBifp2xk1KSbUqnmVEij88WW3jQXgmTXNOiMlEyuts5YNqzYHHKWG79EqpZjF8erXNCtWaJAxdnGRbOu1FiLXXjueXbHg3t8mvbxvxBYlbsxOlSOdHl" http://localhost:8000/o/token/
 
 - Result : ```{"access_token": "YFt7OGDMUOCkyIMwnlrzPARgvCGkMg", "expires_in": 36000, "token_type": "Bearer", "scope": "write", "refresh_token": "qfxhtAoaLpQghetfxwyDuHinpcIH2V"}```
 
@@ -154,13 +154,13 @@ It shows the data even though the scope in class not exists in code. Maybe becau
 
 - **Test with create read and write** :
    
-      curl -X POST -d "grant_type=password&username=tue&password=Thetue2309&scope=read write" -u"BwRi7vofWyieSaGILcQPfm9ytq6AUrlmjIIt1Sbu:FRgi0uEZKj79EfBifp2xk1KSbUqnmVEij88WW3jQXgmTXNOiMlEyuts5YNqzYHHKWG79EqpZjF8erXNCtWaJAxdnGRbOu1FiLXXjueXbHg3t8mvbxvxBYlbsxOlSOdHl" http://localhost:8000/o/token/
+      curl -X POST -d "grant_type=password&username=tuepro123@gmail.com&password=Thetue2309&scope=read write" -u"BwRi7vofWyieSaGILcQPfm9ytq6AUrlmjIIt1Sbu:FRgi0uEZKj79EfBifp2xk1KSbUqnmVEij88WW3jQXgmTXNOiMlEyuts5YNqzYHHKWG79EqpZjF8erXNCtWaJAxdnGRbOu1FiLXXjueXbHg3t8mvbxvxBYlbsxOlSOdHl" http://localhost:8000/o/token/
 
 - Then the result will be : 
   
       {"access_token": "hyrRZx2XPr9SNCnDlfotTet4Wra66C", "expires_in": 36000, "token_type": "Bearer", "scope": "read write", "refresh_token": "K2b1gSrmDhYHT7dt6ulwoyR6bGCaG1"}
 
-    curl -X POST -d "grant_type=password&username=tue&password=Thetue2309&scope=read user"-u"BwRi7vofWyieSaGILcQPfm9ytq6AUrlmjIIt1Sbu:FRgi0uEZKj79EfBifp2xk1KSbUqnmVEij88WW3jQXgmTXNOiMlEyuts5YNqzYHHKWG79EqpZjF8erXNCtWaJAxdnGRbOu1FiLXXjueXbHg3t8mvbxvxBYlbsxOlSOdHl" http://localhost:8000/o/token/
+    curl -X POST -d "grant_type=password&username=tuepro123@gmail.com&password=Thetue2309&scope=read user"-u"BwRi7vofWyieSaGILcQPfm9ytq6AUrlmjIIt1Sbu:FRgi0uEZKj79EfBifp2xk1KSbUqnmVEij88WW3jQXgmTXNOiMlEyuts5YNqzYHHKWG79EqpZjF8erXNCtWaJAxdnGRbOu1FiLXXjueXbHg3t8mvbxvxBYlbsxOlSOdHl" http://localhost:8000/o/token/
 
 
 ### Test case 2 : 
@@ -189,7 +189,7 @@ It shows the data even though the scope in class not exists in code. Maybe becau
 
     - Create access token : 
       
-          curl -X POST -d "grant_type=password&username=tue&password=Thetue2309&scope=read write albums" -u"BwRi7vofWyieSaGILcQPfm9ytq6AUrlmjIIt1Sbu:FRgi0uEZKj79EfBifp2xk1KSbUqnmVEij88WW3jQXgmTXNOiMlEyuts5YNqzYHHKWG79EqpZjF8erXNCtWaJAxdnGRbOu1FiLXXjueXbHg3t8mvbxvxBYlbsxOlSOdHl" http://localhost:8000/o/token/
+          curl -X POST -d "grant_type=password&username=tuepro123@gmail.com&password=Thetue2309&scope=read write albums" -u"BwRi7vofWyieSaGILcQPfm9ytq6AUrlmjIIt1Sbu:FRgi0uEZKj79EfBifp2xk1KSbUqnmVEij88WW3jQXgmTXNOiMlEyuts5YNqzYHHKWG79EqpZjF8erXNCtWaJAxdnGRbOu1FiLXXjueXbHg3t8mvbxvxBYlbsxOlSOdHl" http://localhost:8000/o/token/
     
     - Using access token to add new data albums : 
       
@@ -238,7 +238,7 @@ It shows the data even though the scope in class not exists in code. Maybe becau
 - Test case 6.1 : scope = read groups read write albums
     - Cannot use because of 
     
-          curl -X POST -d "grant_type=password&username=tue&password=Thetue2309&scope(0)=create&scope(1)=read&scope(2)=update" -u"BwRi7vofWyieSaGILcQPfm9ytq6AUrlmjIIt1Sbu:FRgi0uEZKj79EfBifp2xk1KSbUqnmVEij88WW3jQXgmTXNOiMlEyuts5YNqzYHHKWG79EqpZjF8erXNCtWaJAxdnGRbOu1FiLXXjueXbHg3t8mvbxvxBYlbsxOlSOdHl" http://localhost:8000/o/token/
+          curl -X POST -d "grant_type=password&username=tuepro123@gmail.com&password=Thetue2309&scope(0)=create&scope(1)=read&scope(2)=update" -u"BwRi7vofWyieSaGILcQPfm9ytq6AUrlmjIIt1Sbu:FRgi0uEZKj79EfBifp2xk1KSbUqnmVEij88WW3jQXgmTXNOiMlEyuts5YNqzYHHKWG79EqpZjF8erXNCtWaJAxdnGRbOu1FiLXXjueXbHg3t8mvbxvxBYlbsxOlSOdHl" http://localhost:8000/o/token/
 
     - In this command you can see that it have three scope : 
         + scope(0)=create&scope(1)=read&scope(2)=update
