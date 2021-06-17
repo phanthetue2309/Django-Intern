@@ -21,17 +21,16 @@ def register(request):
     # Validate the data
     if serializer.is_valid():
         # If it is valid, save the data (creates a user).
-        serializer.save()
+        serializer.save()  # save success now we have to generate a key
         # Then we get a token for the created user.
         # This could be done differently
         r = requests.post('http://127.0.0.1:8000/o/token/',
                           data={
                               'grant_type': 'password',
-                              'username': request.data['email'],
+                              'email': request.data['email'],
                               'password': request.data['password'],
                               'client_id': CLIENT_ID,
                               'client_secret': CLIENT_SECRET,
-                              'scope': 'albums:read albums:write instruments:read',
                           },
                           )
         return Response(r.json())
@@ -40,7 +39,7 @@ def register(request):
 
 @api_view(['POST'])
 @permission_classes([AllowAny])
-def login(request):
+def token(request):
     """
     Gets tokens with email and password. Input should be in the format:
     {"email": "email", "password": "1234abcd"}
@@ -49,12 +48,13 @@ def login(request):
         'http://127.0.0.1:8000/o/token/',
         data={
             'grant_type': 'password',
-            'username': request.data['email'],
+            'email': request.data['email'],
             'password': request.data['password'],
             'client_id': CLIENT_ID,
             'client_secret': CLIENT_SECRET,
         },
     )
+    print(r.json())
     return Response(r.json())
 
 
