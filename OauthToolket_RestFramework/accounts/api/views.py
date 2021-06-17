@@ -56,7 +56,6 @@ def login(request):
             'scope': "albums:read albums:write instruments:read"
         },
     )
-    print(r.json())
     return Response(r.json())
 
 
