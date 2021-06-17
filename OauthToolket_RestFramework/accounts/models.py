@@ -78,7 +78,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         return str(str(self.id) + " : " + self.email)
 
-    def has_perm(self, perm, obj=None):
+    def has_perm(self, perm, obj=None):  # show the site administration
         return True
 
     def has_module_perms(self, app_label):
