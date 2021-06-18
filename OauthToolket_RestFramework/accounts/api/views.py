@@ -1,12 +1,14 @@
 import requests
+from django.http import JsonResponse
 from rest_framework.decorators import api_view, permission_classes, action
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from .serializer import CreateUserSerializer, UserSerializer
+from ..models import *
 
 # Client ID and AccessToken get from Application create in db
 CLIENT_ID = 'BwRi7vofWyieSaGILcQPfm9ytq6AUrlmjIIt1Sbu'
-CLIENT_SECRET = 'FRgi0uEZKj79EfBifp2xk1KSbUqnmVEij88WW3jQXgmTXNOiMlEyuts5YNqzYHHKWG79EqpZjF8erXNCtWaJAxdnGRbOu1FiLXXjueXbHg3t8mvbxvxBYlbsxOlSOdHl'
+CLIENT_SECRET = 'FRgi0uEZKj79EfBifp2xk1KSbUqnmVEij88WW3jQXgmTXNOiMlEyuts5YNqzYHHKWG79EqpZjF8erXNCtWaJAxdnGRbOu1FiLXXjueXbHg3t8mvbxvxBYlbsxOlSOdHl '
 
 
 @api_view(['POST'])
@@ -24,17 +26,21 @@ def register(request):
         serializer.save()  # save success now we have to generate a key
         # Then we get a token for the created user.
         # This could be done differently
-        r = requests.post('http://127.0.0.1:8000/o/token/',
-                          data={
-                              'grant_type': 'password',
-                              'username': request.data['email'],
-                              'password': request.data['password'],
-                              'client_id': CLIENT_ID,
-                              'client_secret': CLIENT_SECRET,
-                              'scope': "albums:read albums:write instruments:read"
-                          },
-                          )
-        return Response(r.json())
+
+        # r = requests.post('http://127.0.0.1:8000/o/token/',
+        #                   data={
+        #                       'grant_type': 'password',
+        #                       'username': request.data['email'],
+        #                       'password': request.data['password'],
+        #                       'client_id': CLIENT_ID,
+        #                       'client_secret': CLIENT_SECRET,
+        #                       'scope': "albums:read albums:write instruments:read"
+        #                   },
+        #                   )
+
+        # Do not need to return access key
+        # return Response(r.json())
+        return Response(serializer.data)
     return Response(serializer.errors)
 
 
@@ -56,8 +62,21 @@ def login(request):
             'scope': "albums:read albums:write instruments:read"
         },
     )
-    print(r.json())
-    return Response(r.json())
+    # print(r.json())  # print full data in json
+    content = r.json()
+    # print(content.get('access_token'))  # print access token
+    user = User.objects.get(email=request.data['email'])
+    # print(user)  # print user
+    data = {
+        'id': str(user.id),
+        'email': user.email,
+        'access_token': content.get('access_token'),
+        'refresh_token': content.get('refresh_token'),
+        'scope': content.get('scope'),
+        'timestamp': user.timestamp,
+        'role': user.role,
+    }
+    return JsonResponse(data)
 
 
 @api_view(['POST'])
