@@ -47,6 +47,8 @@ def login(request):
             'scope': "albums:read albums:write instruments:read"
         },
     )
+    return Response(r.json())
+
     # print(r.json())  # print full data in json
     content = r.json()
     # print(content.get('access_token'))  # print access token
