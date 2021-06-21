@@ -12,84 +12,10 @@ from .serializers import AlbumSerializer
 class AlbumViewSet(viewsets.ModelViewSet):
     queryset = Album.objects.all()
     serializer_class = AlbumSerializer
-    permission_classes = [TokenMatchesOASRequirements]
-    # Phân scope cho từng cụm
-    required_alternate_scopes = {
-        "GET": [["albums:read"]],
-        "POST": [["albums:write"]],
-        "PUT":  [["albums:write"]],
-        "DELETE": [["albums:write"]],
-    }
 
-
-# Create your views here.
-# class AlbumList(generics.ListAPIView):
-#     permission_classes = [permissions.IsAuthenticated, TokenHasScope]
-#     required_scopes = ['albums']
-#     queryset = Album.objects.all()
-#     serializer_class = AlbumSerializer
-#
-#
-# class CreateAlbum(generics.ListCreateAPIView):
-#     permission_classes = [permissions.IsAuthenticated, TokenHasReadWriteScope]
-#     required_scopes = ['albums']
-#     queryset = Album.objects.all()
-#     serializer_class = AlbumSerializer
-#
-#
-# class UpdateAlbum(generics.UpdateAPIView):
-#     permission_classes = [permissions.IsAuthenticated, TokenHasReadWriteScope]
-#     required_scopes = ['albums']
-#     # TokenHasReadWriteScope and required_scopes will be render to scope='read write albums'
-#     queryset = Album.objects.all()
-#     serializer_class = AlbumSerializer
-#     lookup_field = 'pk'
-
-
-# Test Using API VIew run success
-# class HandleAlbum(APIView):
-#     permission_classes = [permissions.IsAuthenticated, TokenHasScope]
-#     required_scopes = ['albums']
-#     queryset = Album.objects.all()
-#     serializer_class = AlbumSerializer
-#
-#     def get(self, request):
-#         serializer = AlbumSerializer(queryset, many=True)
-#         return Response(serializer.data)
-#
-#     def post(self, request):
-#         serializer = AlbumSerializer(data=request.data, partial=True)
-#         if serializer.is_valid(raise_exception=True):
-#             try:
-#                 serializer.save()
-#                 return Response(serializer.data)
-#             except Exception as e:
-#                 return Response(str(e))
-#
-#     def get_object(self, pk):
-#         try:
-#             album = Album.objects.get(id=pk)
-#             return album
-#         except Album.DoesNotExist:
-#             return Response("No contains data")
-#
-#     def put(self, request, pk):
-#         serializer = AlbumSerializer(instance=self.get_object(pk), data=request.data, partial=True)
-#         if serializer.is_valid(raise_exception=True):
-#             try:
-#                 serializer.save()
-#                 return Response(serializer.data)
-#             except Exception as e:
-#                 return Response(str(e))
-#
-#     def delete(self, request, pk):
-#         try:
-#             album = Album.objects.filter(id=pk)
-#             if not album.exists():
-#                 raise Exception('Can not delete album not contains')
-#             return album.delete()
-#         except Exception as e:
-#             return Response(str(e))
+    def list(self, request, *args, **kwargs):
+        required_scopes = ["albums:read"]
+        return super(AlbumViewSet, self).list(request)
 
 
 
