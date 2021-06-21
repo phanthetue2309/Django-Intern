@@ -1,6 +1,7 @@
 #idea folder
 .idea/
-venv/### Python template
+venv/
+### Python template
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
