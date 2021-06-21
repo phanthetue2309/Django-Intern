@@ -24,22 +24,7 @@ def register(request):
     if serializer.is_valid():
         # If it is valid, save the data (creates a user).
         serializer.save()  # save success now we have to generate a key
-        # Then we get a token for the created user.
-        # This could be done differently
 
-        # r = requests.post('http://127.0.0.1:8000/o/token/',
-        #                   data={
-        #                       'grant_type': 'password',
-        #                       'username': request.data['email'],
-        #                       'password': request.data['password'],
-        #                       'client_id': CLIENT_ID,
-        #                       'client_secret': CLIENT_SECRET,
-        #                       'scope': "albums:read albums:write instruments:read"
-        #                   },
-        #                   )
-
-        # Do not need to return access key
-        # return Response(r.json())
         return Response(serializer.data)
     return Response(serializer.errors)
 
@@ -65,6 +50,7 @@ def login(request):
     # print(r.json())  # print full data in json
     content = r.json()
     # print(content.get('access_token'))  # print access token
+    # TODO: requeset api user with access token and response user info
     user = User.objects.get(email=request.data['email'])
     # print(user)  # print user
     data = {

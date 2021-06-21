@@ -18,6 +18,9 @@
          },
          {
             "instruments:write":"write"
+         },
+         {
+            "instruments:response": "response test"
          }
       ]
    },

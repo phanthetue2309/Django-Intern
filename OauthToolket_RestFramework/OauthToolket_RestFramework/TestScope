@@ -22,6 +22,8 @@ curl -X POST -d "grant_type=password&username=testuser1@gmail.com&password=Thetu
 
 curl -X POST -d "grant_type=password&username=testuser1@gmail.com&password=Thetue2309" -u"xH74ybr3GzosDlFjCWDixKGrOcQbRTArB9mpp5Xl:nVxnzTjHWAQfNxvvPmccJFbgtHYvfRPxrd1YjZsph8BrTRmE9Ux8Gx3esCWcPkivRLFxsB054bCpxNGqZHQrYm3FKL4a2uevVBT77s0WEZ3rlPhTRl4Tzz5KuYzKJzTv" http://localhost:8000/o/token/
 
+curl -X POST -d "grant_type=password&username=testuser1@gmail.com&password=Thetue2309&scope=instruments:response" -u"xH74ybr3GzosDlFjCWDixKGrOcQbRTArB9mpp5Xl:nVxnzTjHWAQfNxvvPmccJFbgtHYvfRPxrd1YjZsph8BrTRmE9Ux8Gx3esCWcPkivRLFxsB054bCpxNGqZHQrYm3FKL4a2uevVBT77s0WEZ3rlPhTRl4Tzz5KuYzKJzTv" http://localhost:8000/o/token/
+
 
 
 Client id for new :
