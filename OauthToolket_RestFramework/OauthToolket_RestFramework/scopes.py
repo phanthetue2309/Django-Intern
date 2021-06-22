@@ -1,3 +1,38 @@
+# [
+#    {
+#       "role_name":"access album role",
+#       "scopes":[
+#          {
+#             "albums:read":"read"
+#          },
+#          {
+#             "albums:write":"write"
+#          }
+#       ]
+#    },
+#    {
+#       "role_name":"access instrument role",
+#       "scopes":[
+#          {
+#             "instruments:read":"read"
+#          },
+#          {
+#             "instruments:write":"write"
+#          }
+#       ]
+#    },
+#    {
+#       "role_name":"admin_role",
+#       "scopes":[
+#          {
+#             "read":"read"
+#          },
+#          {
+#             "write":"write"
+#          }
+#       ]
+#    }
+# ]
 from oauth2_provider.scopes import BaseScopes
 from accounts.models import Permission
 

@@ -1,15 +1,14 @@
-from oauth2_provider.contrib.rest_framework import TokenHasReadWriteScope, TokenMatchesOASRequirements
 from rest_framework import viewsets, permissions
 from .models import Instrument
 from .serializers import InstrumentSerializer
 from rest_framework.permissions import IsAuthenticated
 
+
 # Test Using ViewSet - using TokenMatchesOASRequirements
 class InstrumentViewSet(viewsets.ModelViewSet):
-
     queryset = Instrument.objects.all()
     serializer_class = InstrumentSerializer
-
+    permission_classes = [TokenMatchesOASRequirements]
 
 # Test view_set using TokenHasReadWriteScope
 # class InstrumentViewSet(viewsets.ModelViewSet):
