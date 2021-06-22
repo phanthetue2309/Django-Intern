@@ -9,14 +9,6 @@ class InstrumentViewSet(viewsets.ModelViewSet):
 
     queryset = Instrument.objects.all()
     serializer_class = InstrumentSerializer
-    permission_classes = [IsAuthenticated]
-    # Phân scope cho từng cụm
-    required_alternate_scopes = {
-        "GET": [["instruments:read"]],
-        "POST": [["instruments:write"]],
-        "PUT": [["instruments:write"]],
-        "DELETE": [["instruments:write"]],
-    }
 
 
 # Test view_set using TokenHasReadWriteScope
