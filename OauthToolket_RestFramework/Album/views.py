@@ -1,22 +1,16 @@
-from django.shortcuts import render
-from rest_framework.views import APIView
-from oauth2_provider.contrib.rest_framework import TokenHasReadWriteScope, TokenHasScope, TokenMatchesOASRequirements
-from rest_framework.response import Response
-from rest_framework import viewsets
-from rest_framework import generics, permissions
+from api_base.views.base import BaseViewSet
 from .models import Album
 from .serializers import AlbumSerializer
 
+from api_base.views.base import BaseViewSet
+from api_base.permissions.permissions import TokenPermissionWithAction
+
 
 # Test Using ViewSet
-class AlbumViewSet(viewsets.ModelViewSet):
+class AlbumViewSet(BaseViewSet):
     queryset = Album.objects.all()
     serializer_class = AlbumSerializer
+    permission_classes = [TokenPermissionWithAction]
 
     def list(self, request, *args, **kwargs):
-        required_scopes = ["albums:read"]
         return super(AlbumViewSet, self).list(request)
-
-
-
-

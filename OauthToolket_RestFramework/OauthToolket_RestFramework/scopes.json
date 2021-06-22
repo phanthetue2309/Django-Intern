@@ -14,13 +14,16 @@
       "role_name":"access instrument role",
       "scopes":[
          {
-            "instruments:read":"read"
+            "instrument_test:read":"read"
          },
          {
-            "instruments:write":"write"
+            "instrument_test:write":"write"
          },
          {
-            "instruments:response": "response test"
+            "instrument_test:response_test": "response test"
+         },
+         {
+            "instrument_test:list": "response test"
          }
       ]
    },
