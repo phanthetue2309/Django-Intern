@@ -2,14 +2,14 @@ from oauth2_provider.contrib.rest_framework import TokenHasReadWriteScope, Token
 from rest_framework import viewsets, permissions
 from .models import Instrument
 from .serializers import InstrumentSerializer
-
+from rest_framework.permissions import IsAuthenticated
 
 # Test Using ViewSet - using TokenMatchesOASRequirements
 class InstrumentViewSet(viewsets.ModelViewSet):
 
     queryset = Instrument.objects.all()
     serializer_class = InstrumentSerializer
-    permission_classes = [TokenMatchesOASRequirements]
+    permission_classes = [IsAuthenticated]
     # Phân scope cho từng cụm
     required_alternate_scopes = {
         "GET": [["instruments:read"]],

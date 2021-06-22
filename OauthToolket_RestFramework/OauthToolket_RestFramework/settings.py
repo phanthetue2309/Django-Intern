@@ -67,26 +67,12 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'oauth2_provider.middleware.OAuth2TokenMiddleware',
+    # TODO: Change MIDDLEWARE is second
 ]
 
 CORS_ORIGIN_ALLOW_ALL = True
-
-
-try:
-    with open('OauthToolket_RestFramework/scopes.json') as scope_file:
-        data = json.load(scope_file)
-        scopes = {}
-        roles = {}
-        for i in range(len(data)):
-            roles[data[i]["role_name"]] = data[i]["scopes"]
-            for scope in data[i]["scopes"]:
-                scopes.update(scope)
-except Exception as e:
-    print(e)
-
 OAUTH2_PROVIDER = {
-    # this is the list of available scopes
-    'SCOPES': scopes
+    "SCOPES_BACKEND_CLASS": "OauthToolket_RestFramework.scopes.ScopesBackend",
 }
 
 AUTHENTICATION_BACKENDS = (

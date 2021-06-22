@@ -5,13 +5,20 @@ from django.contrib.auth.models import PermissionsMixin
 from django.db import models
 import uuid
 
-from django.db.models import CASCADE
+
+class Permission(models.Model):
+    scope = models.CharField(max_length=255, blank=True, unique=True)
+    description = models.CharField(max_length=255, unique=True, null=True)
+
+    def __str__(self):
+        return f'{self.scope} ({self.description})'
 
 
 class Role(models.Model):
-    name = models.CharField(max_length=255)
-    permissions_role = models.TextField(null=True)
+    name = models.CharField(max_length=255, unique=True)
     description = models.TextField()
+    permissions = models.ManyToManyField(Permission, null=True, related_name="roles")
+    is_private = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name
@@ -67,7 +74,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     staff = models.BooleanField(default=False)  # staff not superuser
     admin = models.BooleanField(default=False)  # superuser
     timestamp = models.DateTimeField(auto_now_add=True)
-    role = models.ForeignKey(Role, null=True, blank=True, on_delete=CASCADE)
+    role = models.ForeignKey(Role, null=True, blank=True, on_delete=models.CASCADE)
     USERNAME_FIELD = 'email'  # username
 
     objects = UserManager()
